@@ -52,14 +52,16 @@ function M.config()
     "lua_ls",
     "cssls",
     "html",
-    "tsserver",
-    "astro",
+    -- "tsserver",
+    -- "astro",
     "pyright",
     "bashls",
     "jsonls",
     "yamlls",
     "marksman",
     "tailwindcss",
+    "gopls",
+    "jdtls",
   }
 
   local default_diagnostic_config = {
@@ -108,9 +110,11 @@ function M.config()
     end
 
     if server == "lua_ls" then
-      require("neodev").setup {}
+      require("neodev").setup {
+        library = { plugins = { "neotest" }, types = true },
+      }
     end
-
+    
     lspconfig[server].setup(opts)
   end
 end

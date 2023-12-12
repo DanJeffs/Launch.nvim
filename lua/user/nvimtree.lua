@@ -76,6 +76,9 @@ function M.config()
       special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
       symlink_destination = true,
     },
+    filters = {
+            git_ignored = false
+        },
     update_focused_file = {
       enable = true,
       debounce_delay = 15,

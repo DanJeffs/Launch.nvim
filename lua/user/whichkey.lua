@@ -94,7 +94,8 @@ function M.config()
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
       d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
       w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-      f = { "<cmd>lua vim.lsp.buf.format({timeout_ms = 1000000})<cr>", "Format" },
+      -- f = { "<cmd>lua vim.lsp.buf.format({timeout_ms = 1000000})<cr>", "Format" },
+      f = { "Format" },
       i = { "<cmd>LspInfo<cr>", "Info" },
       I = { "<cmd>Mason<cr>", "Mason Info" },
       j = {
@@ -115,22 +116,11 @@ function M.config()
       },
       e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
     },
-
-    -- t = {
-    --   name = "Tab",
-    --   t = {
-    --     "<cmd>lua require('telescope').extensions['telescope-tabs'].list_tabs(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Tabs'})<cr>",
-    --     "Find Tab",
-    --   },
-    --   a = { "<cmd>$tabnew<cr>", "New Empty Tab" },
-    --   A = { "<cmd>tabnew %<cr>", "New Tab" },
-    --   n = { "<cmd>tabn<cr>", "Next" },
-    --   o = { "<cmd>tabonly<cr>", "Only" },
-    --   p = { "<cmd>tabp<cr>", "Prev" },
-    --   h = { "<cmd>-tabmove<cr>", "Move Left" },
-    --   l = { "<cmd>+tabmove<cr>", "Move Right" },
-    -- },
-
+    t = {
+      name = "Tests",
+      t = { function() require("neotest").run.run() end, "Run nearest Test" },
+      T = { function() require("neotest").run.run(vim.fn.expand("%")) end, "Run all Tests" },
+    },
     T = {
       name = "Treesitter",
       i = { ":TSConfigInfo<cr>", "Info" },

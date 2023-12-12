@@ -23,6 +23,7 @@ function M.config()
       lua = { "stylua" },
       python = { "isort", "black" },
       ruby = { "rubocop" },
+      java = { "standardjs" },
     },
 
     format_one_save = {
@@ -32,7 +33,7 @@ function M.config()
     },
   })
 
-  vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+  vim.keymap.set({ "n", "v" }, "<leader>lf", function()
       conform.format({
         lsp_fallback = true,
         async = false,

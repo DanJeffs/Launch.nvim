@@ -37,6 +37,7 @@ function M.config()
       hgcommit = false,
       svn = false,
       cvs = false,
+      go = false,
       ["."] = false,
     },
   }

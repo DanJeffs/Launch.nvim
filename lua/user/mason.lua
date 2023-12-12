@@ -13,13 +13,15 @@ M.servers = {
   "cssls",
   "html",
   "tsserver",
-  "astro",
+  -- "astro",
   "pyright",
   "bashls",
   "jsonls",
   "yamlls",
   "marksman",
   "tailwindcss",
+  "jdtls",
+  "gopls",
 }
 
 M.formatters = {

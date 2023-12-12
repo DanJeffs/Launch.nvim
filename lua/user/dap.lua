@@ -2,6 +2,11 @@ local M = {
   "mfussenegger/nvim-dap",
   -- commit = "6b12294a57001d994022df8acbe2ef7327d30587",
   event = "VeryLazy",
+  dependencies = {
+    "theHamsta/nvim-dap-virtual-text",
+    "mfussenegger/nvim-dap-python",
+    "nvim-telescope/telescope-dap.nvim",
+  },
 }
 
 function M.config()
@@ -23,6 +28,10 @@ function M.config()
   dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
   end
+
+  --DAP-PYTHON setup
+  local dap_python = require "dap-python"
+  dap_python.setup "~/.virtualenvs/debugpy/bin/python"
 
   dap.adapters.codelldb = {
     type = "server",
@@ -52,15 +61,22 @@ function M.config()
       stopOnEntry = false,
     },
   }
-end
 
-M = {
-  "ravenxrz/DAPInstall.nvim",
-  commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de",
-  config = function()
-    require("dap_install").setup {}
-    require("dap_install").config("python", {})
-  end,
-}
+  dap.adapters.go = {
+    type = "executable",
+    command = "node",
+    args = { os.getenv "HOME" .. "/dev/golang/vscode-go/dist/debugAdapter.js" },
+  }
+  dap.configurations.go = {
+    {
+      type = "go",
+      name = "Debug",
+      request = "launch",
+      showLog = false,
+      program = "${file}",
+      dlvToolPath = vim.fn.exepath "dlv", -- Adjust to where delve is installed
+    },
+  }
+end
 
 return M
