@@ -62,6 +62,7 @@ function M.config()
     "tailwindcss",
     "gopls",
     "jdtls",
+    "terraformls",
   }
 
   local default_diagnostic_config = {
